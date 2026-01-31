@@ -74,6 +74,7 @@ bool ffPrintPackages(FFPackagesOptions* options)
             FF_PRINT_PACKAGE_NAME(nixDefault, "nix-default")
         }
         FF_PRINT_PACKAGE(apk)
+        FF_PRINT_PACKAGE(vellum)
         FF_PRINT_PACKAGE(pkg)
         FF_PRINT_PACKAGE(pkgsrc)
         FF_PRINT_PACKAGE(kiss)
@@ -165,6 +166,7 @@ bool ffPrintPackages(FFPackagesOptions* options)
             FF_FORMAT_ARG(counts.nixUser, "nix-user"),
             FF_FORMAT_ARG(counts.nixDefault, "nix-default"),
             FF_FORMAT_ARG(counts.apk, "apk"),
+            FF_FORMAT_ARG(counts.vellum, "vellum"),
             FF_FORMAT_ARG(counts.pkg, "pkg"),
             FF_FORMAT_ARG(counts.flatpakSystem, "flatpak-system"),
             FF_FORMAT_ARG(counts.flatpakUser, "flatpak-user"),
@@ -306,6 +308,9 @@ void ffParsePackagesJsonObject(FFPackagesOptions* options, yyjson_val* module)
                             FF_TEST_PACKAGE_NAME(SOAR)
                             FF_TEST_PACKAGE_NAME(SORCERY)
                             break;
+                        case 'V': if (false);
+                            FF_TEST_PACKAGE_NAME(VELLUM)
+                            break;
                         case 'W': if (false);
                             FF_TEST_PACKAGE_NAME(WINGET)
                             break;
@@ -371,6 +376,7 @@ void ffGeneratePackagesJsonConfig(FFPackagesOptions* options, yyjson_mut_doc* do
     FF_TEST_PACKAGE_NAME(SNAP)
     FF_TEST_PACKAGE_NAME(SOAR)
     FF_TEST_PACKAGE_NAME(SORCERY)
+    FF_TEST_PACKAGE_NAME(VELLUM)
     FF_TEST_PACKAGE_NAME(WINGET)
     FF_TEST_PACKAGE_NAME(XBPS)
     #undef FF_TEST_PACKAGE_NAME
@@ -433,6 +439,7 @@ bool ffGeneratePackagesJsonResult(FF_MAYBE_UNUSED FFPackagesOptions* options, yy
     FF_APPEND_PACKAGE_COUNT(soar)
     FF_APPEND_PACKAGE_COUNT(kiss)
     FF_APPEND_PACKAGE_COUNT(sorcery)
+    FF_APPEND_PACKAGE_COUNT(vellum)
     FF_APPEND_PACKAGE_COUNT(winget)
     FF_APPEND_PACKAGE_COUNT(xbps)
     yyjson_mut_obj_add_strbuf(doc, obj, "pacmanBranch", &counts.pacmanBranch);
@@ -475,6 +482,7 @@ FFModuleBaseInfo ffPackagesModuleInfo = {
         {"Number of nix-user packages", "nix-user"},
         {"Number of nix-default packages", "nix-default"},
         {"Number of apk packages", "apk"},
+        {"Number of vellum packages", "vellum"},
         {"Number of pkg packages", "pkg"},
         {"Number of flatpak-system app packages", "flatpak-system"},
         {"Number of flatpak-user app packages", "flatpak-user"},
