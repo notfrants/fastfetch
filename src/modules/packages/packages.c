@@ -120,6 +120,7 @@ bool ffPrintPackages(FFPackagesOptions* options)
         FF_PRINT_PACKAGE(paludis)
         FF_PRINT_PACKAGE(winget)
         FF_PRINT_PACKAGE(opkg)
+        FF_PRINT_PACKAGE(entware)
         if (options->combined)
         {
             FF_PRINT_PACKAGE_ALL(am);
@@ -179,6 +180,7 @@ bool ffPrintPackages(FFPackagesOptions* options)
             FF_FORMAT_ARG(counts.paludis, "paludis"),
             FF_FORMAT_ARG(counts.winget, "winget"),
             FF_FORMAT_ARG(counts.opkg, "opkg"),
+            FF_FORMAT_ARG(counts.entware, "entware"),
             FF_FORMAT_ARG(counts.amSystem, "am-system"),
             FF_FORMAT_ARG(counts.sorcery, "sorcery"),
             FF_FORMAT_ARG(counts.lpkg, "lpkg"),
@@ -259,6 +261,7 @@ void ffParsePackagesJsonObject(FFPackagesOptions* options, yyjson_val* module)
                             break;
                         case 'E': if (false);
                             FF_TEST_PACKAGE_NAME(EMERGE)
+                            FF_TEST_PACKAGE_NAME(ENTWARE)
                             FF_TEST_PACKAGE_NAME(EOPKG)
                             break;
                         case 'F': if (false);
@@ -347,6 +350,7 @@ void ffGeneratePackagesJsonConfig(FFPackagesOptions* options, yyjson_mut_doc* do
     FF_TEST_PACKAGE_NAME(CHOCO)
     FF_TEST_PACKAGE_NAME(DPKG)
     FF_TEST_PACKAGE_NAME(EMERGE)
+    FF_TEST_PACKAGE_NAME(ENTWARE)
     FF_TEST_PACKAGE_NAME(EOPKG)
     FF_TEST_PACKAGE_NAME(FLATPAK)
     FF_TEST_PACKAGE_NAME(GUIX)
@@ -404,6 +408,7 @@ bool ffGeneratePackagesJsonResult(FF_MAYBE_UNUSED FFPackagesOptions* options, yy
     FF_APPEND_PACKAGE_COUNT(choco)
     FF_APPEND_PACKAGE_COUNT(dpkg)
     FF_APPEND_PACKAGE_COUNT(emerge)
+    FF_APPEND_PACKAGE_COUNT(entware)
     FF_APPEND_PACKAGE_COUNT(eopkg)
     FF_APPEND_PACKAGE_COUNT(flatpakSystem)
     FF_APPEND_PACKAGE_COUNT(flatpakUser)
@@ -489,6 +494,7 @@ FFModuleBaseInfo ffPackagesModuleInfo = {
         {"Number of paludis packages", "paludis"},
         {"Number of winget packages", "winget"},
         {"Number of opkg packages", "opkg"},
+        {"Number of entware packages", "entware"},
         {"Number of am-system packages", "am-system"},
         {"Number of sorcery packages", "sorcery"},
         {"Number of lpkg packages", "lpkg"},
